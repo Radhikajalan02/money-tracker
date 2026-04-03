@@ -59,7 +59,7 @@ function App() { //adding states to make our form functional
   return (
     <>
       <main>
-        <h1>{total}</h1>
+        <h1>Rs.{total}</h1>
         <form onSubmit={addNewTransaction}>
           <div className='basic'>
             <input type="text"
@@ -87,7 +87,7 @@ function App() { //adding states to make our form functional
             </div>
             <div className="right">
               <div className={`price ${transaction.price < 0 ? 'red' : 'green'}`}>
-                {transaction.price < 0 ? '-' : '+'}${Math.abs(transaction.price)}
+                {transaction.price < 0 ? '-' : '+'}Rs.{Math.abs(transaction.price)}
               </div>
               <div className="datetime">{transaction.datetime}</div>
 
