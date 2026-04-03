@@ -18,13 +18,19 @@ app.get('/api/test',(req,res)=>{
 app.post("/api/transaction",   
     //handlers
      async (req,res)=>{
-        // console.log(process.env.MONGO_URL)
-       await mongoose.connect(process.env.MONGO_URL)
-    const {name,description,datetime,price}=req.body;
-    const transaction= await Transaction.create({name,description,datetime,price})
+         await mongoose.connect(process.env.MONGO_URL)
+        try{ const {name,description,datetime,price}=req.body;
+       const transaction= await Transaction.create({name,description,datetime,price})
 
- res.json(transaction); //we get all the information of our react app inside req.body
-})
+       res.json(transaction);
+        // console.log(process.env.MONGO_URL)
+      
+       //we get all the information of our react app inside req.body
+     }catch(error){
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+     }
+  })
 
 async function getTransactions(req, res){
     await mongoose.connect(process.env.MONGO_URL)
